@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/app.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>CBC</title>
+  </head>
+  <body  style="
+  background-image: linear-gradient(180deg, #00adb5 10%, whitesmoke);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+">
+    <script>
+      function encrypt() {
+        var plain = document.getElementById("plaintext").value;
+        var key = document.getElementById("key").value;
+        if(plain.length == 0){
+            return 0;
+        }
+        var data = new FormData();
+        data.append("plain", plain);
+        data.append("key", key);
+        axios.post('encrypt', data).then(response => {
+          document.getElementById("ciphertext").value = response.data;
+          console.log(response)
+        });
+      }
+      function decrypt(){
+        var cipher = document.getElementById("ciphertext").value;
+        var key = document.getElementById("key").value;
+        if(cipher.length == 0){
+            return 0;
+        }
+        var data = new FormData();
+        data.append("cipher", cipher);
+        data.append("key", key);
+        axios.post('decrypt', data).then(response => {
+            document.getElementById("plaintext").value = response.data;
+            console.log(response)
+        });        
+      }
+    </script>
+    <header class="py-1 px-4" ><h2 class="py-2">Kriptografi</h2></header>
+    <div class="container pt-5" >
+        <div class="row">
+            <div class="container">
+            <div class=" col-xs-4 square mt-5" style="background-color: lightgray;position: absolute;"></div>
+        </div>
+            <div class="col-md-5">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title py-3 text-center card-judul">Plaintext</h5>
+                        <div class="form-floating card-text">
+                            <textarea class="form-control" placeholder="Input..." id="plaintext" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Input...</label>
+                          </div>
+                      </div>
+                    </div>    
+            </div>
+            <div class="col-md-2 text-center">
+              <div class="card ">
+                <div class="card-body">
+                  <h5 class="card-title pt-1 text-center card-judul">Key</h5>
+                  <div class="form-floating card-text">
+                      <input type="number" min="0" class="form-control" placeholder="Input..." id="key" value="2"></input>
+                      <label for="textinput">Input...</label>
+                    </div>
+                </div>
+              </div> 
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title py-3 text-center card-judul">Ciphertext</h5>
+                    <div class="form-floating card-text">
+                        <textarea class="form-control" placeholder="Input..." id="ciphertext" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Input...</label>
+                      </div>
+                  </div>
+                </div>    
+            </div>
+          </div>
+          <div class="my-3 pt-4">
+            <button type="button" class="btn btn-primary mx-2  py-2 mb-3" onclick="encrypt()">Encrypt</button>
+            <button type="button" class="btn btn-primary mx-2 py-2 mb-3" onclick="decrypt()">Decrypt</button>
+          </div>
+    </div>
+  </body>
+  <footer class="bg-light  sticky-bottom">
+    <div class="container p-4 pb-0">
+        <section >
+          <h4>Cipher Block Chaining with Pseudorandom Number Generator
+          </h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, consequuntur similique laudantium, officia dolorem eum nesciunt tenetur fugiat temporibus quisquam dolores accusantium corrupti libero quibusdam sequi alias asperiores natus. Quia?</p>
+           
+        </section>
+    </div>
+    <div class="text-center p-1">
+        © 2021 Copyright
+    </div>
+</footer>
+</html>

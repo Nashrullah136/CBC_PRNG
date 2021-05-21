@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+textarea {
+  height: 200px !important;
+  border-right: 0ch !important;
+  border-left: 0ch !important;
+  border-bottom: 0ch !important;
+  border-radius: 0ch !important;
+}
+input {
+  width: 100%;
+  border-right: 0ch !important;
+  border-left: 0ch !important;
+  border-bottom: 0ch !important;
+  border-radius: 0ch !important;
+}
+.card-body {
+  padding: 2px;
+}
+
+.card {
+  border-radius: 0ch;
+}
+.card-judul{
+  font-family: 'Pattaya', sans-serif;
+}
+body{
+height: 100vh;
+}
+header h2{
+
+  font-weight: bold;
+  color: white;
+}
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #efefef;
+}
