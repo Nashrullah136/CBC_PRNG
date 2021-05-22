@@ -14,12 +14,14 @@ def root():
 def encrypt():
     plain = request.form['plain']
     key = int(request.form['key'])
-    ciphertext = repr(cbc_prng.encrypt(plain, key, "0"*16))
+    block_size = int(request.form['blocksize'])
+    ciphertext = repr(cbc_prng.encrypt(plain, key, "0"*block_size, block_size))
     return ciphertext[1:-1]
 
 @app.route("/decrypt", methods=['POST'])
 def decrypt():
     plain = ast.literal_eval("'"+request.form['cipher']+"'")
     key = int(request.form['key'])
-    plaintext = cbc_prng.decrypt(plain, key, "0"*16)
+    block_size = int(request.form['blocksize'])
+    plaintext = cbc_prng.decrypt(plain, key, "0"*block_size, block_size)
     return plaintext

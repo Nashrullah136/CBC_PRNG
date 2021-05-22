@@ -9,9 +9,7 @@ import random
 from util import *
 from prng import *
 
-BLOCK_SIZE = 32
-
-def decrypt(cipher_text, key, initial_vector):
+def decrypt(cipher_text, key, initial_vector, BLOCK_SIZE):
     random.seed(key)
     cipher_bins = text_to_bin(cipher_text)
     i = 0
@@ -33,7 +31,7 @@ def decrypt(cipher_text, key, initial_vector):
 
     return bins_to_string(plain_bins)
 
-def encrypt(plain_text, key, initial_vector):
+def encrypt(plain_text, key, initial_vector, BLOCK_SIZE):
     random.seed(key)
     last_block = initial_vector
     plain_bins = text_to_bin(plain_text)
@@ -56,6 +54,7 @@ def encrypt(plain_text, key, initial_vector):
     return bins_to_string(cipher_bins)
 
 def main():
+    BLOCK_SIZE = 32
     initial_vector = "0"*BLOCK_SIZE
     plain_text = "asdasdasdasd"
     key = 0

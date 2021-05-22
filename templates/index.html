@@ -18,12 +18,14 @@
       function encrypt() {
         var plain = document.getElementById("plaintext").value;
         var key = document.getElementById("key").value;
+        var blocksize = document.getElementById("blocksize").value;
         if(plain.length == 0){
             return 0;
         }
         var data = new FormData();
         data.append("plain", plain);
         data.append("key", key);
+        data.append("blocksize", blocksize);
         axios.post('encrypt', data).then(response => {
           document.getElementById("ciphertext").value = response.data;
           console.log(response)
@@ -32,12 +34,14 @@
       function decrypt(){
         var cipher = document.getElementById("ciphertext").value;
         var key = document.getElementById("key").value;
+        var blocksize = document.getElementById("blocksize").value;
         if(cipher.length == 0){
             return 0;
         }
         var data = new FormData();
         data.append("cipher", cipher);
         data.append("key", key);
+        data.append("blocksize", blocksize);
         axios.post('decrypt', data).then(response => {
             document.getElementById("plaintext").value = response.data;
             console.log(response)
@@ -69,6 +73,16 @@
                       <input type="number" min="0" class="form-control" placeholder="Input..." id="key" value="2"></input>
                       <label for="textinput">Input...</label>
                     </div>
+                </div>
+              </div>
+              <br>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title pt-1 text-center card-judul">Block Size</h5>
+                  <div class="form-floating card-text">
+                      <input class="form-control" placeholder="Input..." id="blocksize" type="number" step="8" value="8"></input>
+                      <label for="blocksize">Input...</label>
+                  </div>
                 </div>
               </div> 
             </div>
