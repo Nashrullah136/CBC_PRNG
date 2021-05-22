@@ -24,9 +24,11 @@ input {
 .card-judul{
   font-family: 'Pattaya', sans-serif;
 }
-body{
-height: 100vh;
+html,body{
+height: 100%;
+overflow: auto;
 }
+
 header h2{
 
   font-weight: bold;
@@ -38,4 +40,9 @@ footer {
   bottom: 0;
   left: 0;
   background-color: #efefef;
+}
+@media screen and (max-width: 600px) {
+  footer {
+    position: relative;
+  }
 }
