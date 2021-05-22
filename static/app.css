@@ -41,7 +41,12 @@ footer {
   left: 0;
   background-color: #efefef;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 770px) {
+  footer {
+    position: relative;
+  }
+}
+@media screen and (max-height: 700px) {
   footer {
     position: relative;
   }
