@@ -1,16 +1,7 @@
-""""
-Cipher Block Chaining Algorithm
-### I have yet explore the limitation toward unseen character in ASCII,
-### It will display nothing if there are characters identified as unseen
-### character. i.e. the message 131 -> converted to *\r* (unseen char)
-"""
-
-import random
 from util import *
 from prng import *
 
 def decrypt(cipher_text, key, initial_vector, BLOCK_SIZE):
-    random.seed(key)
     cipher_bins = text_to_bin(cipher_text)
     i = 0
     plain_bins = []
@@ -32,7 +23,6 @@ def decrypt(cipher_text, key, initial_vector, BLOCK_SIZE):
     return bins_to_string(plain_bins)
 
 def encrypt(plain_text, key, initial_vector, BLOCK_SIZE):
-    random.seed(key)
     last_block = initial_vector
     plain_bins = text_to_bin(plain_text)
     size = BLOCK_SIZE//8
